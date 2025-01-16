@@ -21,9 +21,9 @@ jobs:
     - name: Make
       run: |
         cd buildroot
-        cp ../.config .
-        cp ../.config_linux .
-        cp ../rootfs_overlay .
+        mv ../.config .
+        mv ../.config_linux .
+        mv ../rootfs_overlay .
         make
 
     - name: Compress output directory
