@@ -23,8 +23,7 @@ jobs:
         cd buildroot
         cp ../.config .
         cp ../.config_linux .
-        pwd
-        ls -alh
+        cp ../rootfs_overlay .
         make
 
     - name: Compress output directory
