@@ -1,0 +1,23 @@
+name: Config
+on:
+  workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+    - name: Find and delete files larger than 100MB (recursive)
+      run: |
+        find . -type f -size +100M -exec rm -f {} +
+    - name: Commit
+      run: |
+        git pull
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add .
+        git commit -m "Automated commit via GitHub Actions"
+        git push
