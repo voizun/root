@@ -11,11 +11,12 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Move config
+    - name: Mv config
       run: |
         cd buildroot
         mv ../.config .
         mv ../.config_linux .
+        mv ../rootfs_overlay .
 
     - name: Prepare kernel config
       run: cd buildroot && make linux-menuconfig || true
