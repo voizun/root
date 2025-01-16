@@ -29,6 +29,7 @@ jobs:
         cd buildroot
         mv .config ../
         mv .config_linux ../
+        mv rootfs_overlay ../
         cd ../
         git pull
         git config user.name "github-actions[bot]"
