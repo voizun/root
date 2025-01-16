@@ -21,6 +21,7 @@ jobs:
         cd buildroot
         cp ../.config .
         cp ../.config_linux .
+        pwd
         make
 
     - name: Compress output directory
