@@ -8,16 +8,28 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v4
+
+    - name: Move config
+      run: |
+        cd buildroot
+        mv ../.config .
+        mv ../.config_linux .
+
+    - name: Prepare kernel config
+      run: cd buildroot && make linux-menuconfig || true
+      
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
-    - name: Find and delete files larger than 100MB (recursive)
-      run: |
-        find . -type f -size +100M -exec rm -f {} +
+
     - name: Commit
       run: |
+        cd buildroot
+        mv .config ../
+        mv .config_linux ../
+        cd ../
         git pull
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add .
+        git add .config .config_linux
         git commit -m "Automated commit via GitHub Actions"
         git push
