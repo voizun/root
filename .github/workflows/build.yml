@@ -22,6 +22,7 @@ jobs:
         cp ../.config .
         cp ../.config_linux .
         pwd
+        ls -alh
         make
 
     - name: Compress output directory
